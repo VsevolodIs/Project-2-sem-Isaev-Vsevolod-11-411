@@ -1,0 +1,29 @@
+{% load static %} <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MarsOps | Система управления колонией</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <h1> Марсиане </h1>
+        <nav>
+            <a href="{% url 'resources:resources_list' %}" class="nav-link">Ресурсы</a>
+            <a href="{% url 'habitat:habitat_list' %}" class="nav-link">Модули</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>ORIS MarsOps!!!</p>
+        </div>
+    </footer>
+
+</body>
+</html>

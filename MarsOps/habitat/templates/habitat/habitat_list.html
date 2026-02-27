@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Модули</h2>
+    <div class="habitats-grid">
+        {% for item in habitats %}
+            <div class="habitat-card">
+                <h3>{{ item.name }}</h3>
+                <p class="capacity">{{ item.capacity }} чел</p>
+                {% if item.in_stock %}
+                    <p class="stock-yes">В наличии</p>
+                {% else %}
+                    <p class="stock-no">Нет в наличии</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

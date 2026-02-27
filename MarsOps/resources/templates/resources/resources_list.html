@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Наши ресурсы</h2>
+    <div class="resources-grid">
+        {% for item in resources %}
+            <div class="resources-card">
+                <h3>{{ item.name }}</h3>
+                <p class="quantity">{{ item.quantity}}</p>
+                <p class="unit">{{ item.unit}}</p>
+                {% if item.in_stock %}
+                    <p class="stock-yes">В наличии</p>
+                {% else %}
+                    <p class="stock-no">Нет в наличии</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
