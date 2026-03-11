@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crew.apps.CrewConfig',
+    'missions.apps.MissionsConfig',
+    'stations.apps.StationsConfig',
     'resources.apps.ResourcesConfig',
     'habitat.apps.HabitatConfig',
     'django.contrib.admin',
@@ -76,10 +79,15 @@ WSGI_APPLICATION = 'MarsOps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'marsops',
+        'USER': 'postgres',
+        'PASSWORD': 'se0509va',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -104,7 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
+TIME_ZONE = 'UTC'
+USE_I18N = True
 
 TIME_ZONE = 'UTC'
 

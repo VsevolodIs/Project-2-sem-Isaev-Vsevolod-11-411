@@ -1,13 +1,13 @@
 from django.shortcuts import render
+from .models import Resources, Category
 
-MOCK_RESOURCES = [
-    {'name': 'Кислород', 'quantity': 500, 'unit': 'л', 'in_stock': True},
-    {'name': 'Вода', 'quantity': 1200, 'unit': 'л', 'in_stock': True},
-    {'name': 'Пища (сублиматы)', 'quantity': 300, 'unit': 'кг', 'in_stock': True},
-    {'name': 'Солнечные батареи', 'quantity': 0, 'unit': 'шт', 'in_stock': False},
-    {'name': 'Запчасти для ровера', 'quantity': 0, 'unit': 'шт', 'in_stock': False},
-]
 
 def resources_list(request):
-    context = {'resources': MOCK_RESOURCES}
+    resources_db = Resources.objects.all()
+    categories_db = Category.objects.all()
+
+    context = {
+        'resources': resources_db,
+        'categories': categories_db
+    }
     return render(request, 'resources/resources_list.html', context)

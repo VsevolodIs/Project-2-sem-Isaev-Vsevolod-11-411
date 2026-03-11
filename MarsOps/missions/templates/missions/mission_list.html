@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Миссии</h2>
+<div class="missions-grid">
+    {% for mission in missions %}
+    <div class="mission-card">
+        <h3>{{ mission.name }}</h3>
+        <p class="type">{{ mission.mission_type }}</p>
+        <p class="station">{{ mission.station.name }}</p>
+        <p class="status">{{ mission.status }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

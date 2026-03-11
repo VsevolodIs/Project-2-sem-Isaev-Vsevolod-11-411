@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Экипаж</h2>
+<div class="crew-grid">
+    {% for member in crews %}
+    <div class="crew-card">
+        <h3>{{ member.name }}</h3>
+        <p class="role">{{ member.role }}</p>
+        <p class="status">{{ member.status }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

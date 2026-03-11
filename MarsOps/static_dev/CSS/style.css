@@ -89,20 +89,18 @@ body {
     background-color: #2a2f4a;
 }
 
-.quantity {
+.stock {
     color: #ffd700;
     font-weight: bold;
     font-size: 22px;
     text-shadow: 0 0 5px #ffd700;
-    display: inline;
 }
 
-.unit {
+.price {
     color: #ffd700;
     font-weight: bold;
     font-size: 22px;
     text-shadow: 0 0 5px #ffd700;
-    display: inline;
 }
 
 .capacity {
@@ -122,4 +120,265 @@ body {
     color: #ff6b6b;
     font-size: 14px;
     font-weight: bold;
+}
+
+/* MISSIONS */
+.missions-grid {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.mission-card {
+    border: 2px solid #4a6fa5;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    background-color: #1a1f3a;
+    transition: 0.3s;
+}
+
+.mission-card:hover {
+    transform: scale(1.05);
+    border-color: #ffd700;
+    box-shadow: 0 0 15px #ffd700;
+}
+
+.mission-card h3 {
+    color: #ffd700;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px #ffd700;
+}
+
+.mission-card .type {
+    color: #4a6fa5;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.mission-card .station {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.mission-card .status {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.mission-card .status-planned {
+    background-color: #4a6fa5;
+    color: white;
+}
+
+.mission-card .status-active {
+    background-color: #4aff70;
+    color: #1a1f3a;
+}
+
+.mission-card .status-completed {
+    background-color: #ffd700;
+    color: #1a1f3a;
+}
+
+.mission-card .status-failed {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.mission-card .date {
+    color: #888;
+    font-size: 14px;
+    margin-top: 15px;
+    border-top: 1px solid #4a6fa5;
+    padding-top: 10px;
+}
+
+
+/* CREW */
+.crew-grid {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.crew-card {
+    border: 2px solid #4a6fa5;
+    border-radius: 15px;
+    padding: 25px 20px;
+    width: 250px;
+    text-align: center;
+    background: linear-gradient(145deg, #1a1f3a 0%, #252b4a 100%);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.crew-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4a6fa5, #ffd700, #4a6fa5);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+}
+
+.crew-card:hover::before {
+    transform: translateX(0);
+}
+
+.crew-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+}
+
+.crew-card h3 {
+    color: #ffd700;
+    font-size: 22px;
+    margin: 0 0 15px 0;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    border-bottom: 1px solid #4a6fa5;
+    padding-bottom: 10px;
+}
+
+.crew-card .role {
+    color: #4a6fa5;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.crew-card .status {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    background-color: #2a2f4a;
+    border: 1px solid #4a6fa5;
+}
+
+.crew-card .status-active {
+    background-color: #4aff70;
+    color: #1a1f3a;
+    border-color: #4aff70;
+}
+
+.crew-card .status-rest {
+    background-color: #4a6fa5;
+    color: white;
+}
+
+.crew-card .status-training {
+    background-color: #ffd700;
+    color: #1a1f3a;
+}
+
+.crew-card .status-mission {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+
+/* STATIONS */
+.stations-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.station-card {
+    border: 2px solid #4a6fa5;
+    border-radius: 20px;
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+    background: linear-gradient(135deg, #1e2442 0%, #2c3255 100%);
+    transition: 0.3s;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.station-card:hover {
+    transform: scale(1.03);
+    border-color: #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+.station-card h3 {
+    color: #ffd700;
+    font-size: 26px;
+    margin: 0 0 20px 0;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    border-bottom: 2px solid #4a6fa5;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.station-card .type {
+    color: #4a6fa5;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-transform: uppercase;
+    background-color: rgba(74, 111, 165, 0.2);
+    padding: 8px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.station-card .status-operational {
+    background-color: #4aff70;
+    color: #1a1f3a;
+    border: 1px solid #4aff70;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0 5px;
+    padding: 8px 20px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.station-card .status-non-operational {
+    background-color: #ff6b6b;
+    color: white;
+    border: 1px solid #ff6b6b;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0 5px;
+    padding: 8px 20px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.station-card[data-type="research"] .type {
+    color: #4aff70;
+}
+
+.station-card[data-type="mining"] .type {
+    color: #ffd700;
+}
+
+.station-card[data-type="communications"] .type {
+    color: #4a6fa5;
 }

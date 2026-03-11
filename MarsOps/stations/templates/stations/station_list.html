@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Станции</h2>
+<div class="stations-grid">
+    {% for station in stations %}
+    <div class="station-card">
+        <h3>{{ station.name }}</h3>
+        <p class="type">{{ station.station_type }}</p>
+        <p class="status">
+            {% if station.operational %}
+            Работает
+            {% else %}
+            Не работает
+            {% endif %}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

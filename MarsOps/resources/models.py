@@ -1,3 +1,28 @@
 from django.db import models
 
-# Create your models here.
+
+class Category(models.Model):
+    name = models.CharField('Название', max_length=100)
+    slug = models.SlugField('Слаг', unique=True)
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
+
+class Resources(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='resources')
+    title = models.CharField('Название ресурса', max_length=100)
+    description = models.TextField('Описание')
+    price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField('Остаток на складе', default=0)
+    is_available = models.BooleanField('В продаже', default=True)
+
+    class Meta:
+        verbose_name = 'Ресурс'
+        verbose_name_plural = 'Ресурсы'
+
+    def __str__(self):
+        return f"{self.title} ({self.price})"

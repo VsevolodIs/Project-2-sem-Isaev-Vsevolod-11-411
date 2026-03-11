@@ -4,10 +4,10 @@
     <div class="resources-grid">
         {% for item in resources %}
             <div class="resources-card">
-                <h3>{{ item.name }}</h3>
-                <p class="quantity">{{ item.quantity}}</p>
-                <p class="unit">{{ item.unit}}</p>
-                {% if item.in_stock %}
+                <h3>{{ item.title }}</h3>
+                <p class="stock">{{ item.stock}}</p>
+                <p class="price">{{ item.price}} руб</p>
+                {% if item.is_available %}
                     <p class="stock-yes">В наличии</p>
                 {% else %}
                     <p class="stock-no">Нет в наличии</p>
