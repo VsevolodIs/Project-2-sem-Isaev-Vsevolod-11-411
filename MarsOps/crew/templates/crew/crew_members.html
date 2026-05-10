@@ -1,14 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Экипаж</h2>
+<h2>Экипаж Марса 👨‍🚀</h2>
+
 <div class="crew-grid">
     {% for member in crews %}
     <div class="crew-card">
         <h3>{{ member.name }}</h3>
         <p class="role">{{ member.role }}</p>
         <p class="status">{{ member.status }}</p>
+
+        {% if member.user %}
+            <div class="user-info">
+                <p class="username">
+                    👤 {{ member.user.username }}
+                    {% if member.user.profile %}
+                        <span class="rank">{{ member.user.profile.get_rank_display }}</span>
+                    {% endif %}
+                </p>
+                {% if member.user.profile.experience_points %}
+                    <p class="experience">🎖️ {{ member.user.profile.experience_points }} XP</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <p class="no-user">🤖 NPC</p>
+        {% endif %}
+
+        {% if member.assigned_station %}
+            <p class="station">🚀 Станция: {{ member.assigned_station.name }}</p>
+        {% endif %}
     </div>
+    {% empty %}
+    <p>Нет членов экипажа</p>
     {% endfor %}
 </div>
 {% endblock %}

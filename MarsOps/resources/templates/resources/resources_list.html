@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <h2>Наши ресурсы</h2>
     <div class="resources-grid">
         {% for item in resources %}
             <div class="resources-card">
                 <h3>{{ item.title }}</h3>
+                {% if item.image_path %}
+                    <div style="margin: 10px 0;">
+                        <img src="{% static item.image_path %}"
+                        alt="{{ item.title }}"
+                        style="max-width: 100%; max-height: 180px; border-radius: 8px;">
+                    </div>
+                {% endif %}
                 <p class="stock">{{ item.stock}}</p>
                 <p class="price">{{ item.price}} руб</p>
                 {% if item.is_available %}

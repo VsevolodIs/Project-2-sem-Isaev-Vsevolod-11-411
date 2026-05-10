@@ -1,3 +1,5 @@
+/* === ОСНОВНЫЕ СТИЛИ (Темная тема по умолчанию) === */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #0a0f2a;
@@ -7,6 +9,7 @@ body {
     background-image: url('https://images.wallpaperscraft.com/image/single/starry_sky_stars_night_131522_2560x1080.jpg');
     background-size: cover;
     background-position: center;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .site-header {
@@ -14,6 +17,7 @@ body {
     padding: 20px;
     text-align: center;
     border-bottom: 3px solid #4a6fa5;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .nav-link {
@@ -23,6 +27,7 @@ body {
     margin: 0 15px;
     font-size: 18px;
     padding: 5px 10px;
+    transition: color 0.3s, background-color 0.3s;
 }
 
 .nav-link:hover {
@@ -39,8 +44,10 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(74, 111, 165, 0.5);
     border: 1px solid #4a6fa5;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
+/* RESOURCES */
 .resources-grid {
     display: flex;
     gap: 25px;
@@ -65,6 +72,7 @@ body {
     box-shadow: 0 0 15px #ffd700;
 }
 
+/* HABITATS */
 .habitats-grid {
     display: flex;
     gap: 25px;
@@ -89,21 +97,7 @@ body {
     background-color: #2a2f4a;
 }
 
-.stock {
-    color: #ffd700;
-    font-weight: bold;
-    font-size: 22px;
-    text-shadow: 0 0 5px #ffd700;
-}
-
-.price {
-    color: #ffd700;
-    font-weight: bold;
-    font-size: 22px;
-    text-shadow: 0 0 5px #ffd700;
-}
-
-.capacity {
+.stock, .price, .capacity {
     color: #ffd700;
     font-weight: bold;
     font-size: 22px;
@@ -175,25 +169,10 @@ body {
     margin: 10px 0;
 }
 
-.mission-card .status-planned {
-    background-color: #4a6fa5;
-    color: white;
-}
-
-.mission-card .status-active {
-    background-color: #4aff70;
-    color: #1a1f3a;
-}
-
-.mission-card .status-completed {
-    background-color: #ffd700;
-    color: #1a1f3a;
-}
-
-.mission-card .status-failed {
-    background-color: #ff6b6b;
-    color: white;
-}
+.mission-card .status-planned { background-color: #4a6fa5; color: white; }
+.mission-card .status-active { background-color: #4aff70; color: #1a1f3a; }
+.mission-card .status-completed { background-color: #ffd700; color: #1a1f3a; }
+.mission-card .status-failed { background-color: #ff6b6b; color: white; }
 
 .mission-card .date {
     color: #888;
@@ -202,7 +181,6 @@ body {
     border-top: 1px solid #4a6fa5;
     padding-top: 10px;
 }
-
 
 /* CREW */
 .crew-grid {
@@ -237,10 +215,7 @@ body {
     transition: transform 0.5s;
 }
 
-.crew-card:hover::before {
-    transform: translateX(0);
-}
-
+.crew-card:hover::before { transform: translateX(0); }
 .crew-card:hover {
     transform: translateY(-5px);
     border-color: #ffd700;
@@ -276,29 +251,12 @@ body {
     border: 1px solid #4a6fa5;
 }
 
-.crew-card .status-active {
-    background-color: #4aff70;
-    color: #1a1f3a;
-    border-color: #4aff70;
-}
+.crew-card .status-active { background-color: #4aff70; color: #1a1f3a; border-color: #4aff70; }
+.crew-card .status-rest { background-color: #4a6fa5; color: white; }
+.crew-card .status-training { background-color: #ffd700; color: #1a1f3a; }
+.crew-card .status-mission { background-color: #ff6b6b; color: white; }
 
-.crew-card .status-rest {
-    background-color: #4a6fa5;
-    color: white;
-}
-
-.crew-card .status-training {
-    background-color: #ffd700;
-    color: #1a1f3a;
-}
-
-.crew-card .status-mission {
-    background-color: #ff6b6b;
-    color: white;
-}
-
-
-/* STATIONS */
+/* STATIONS - общие */
 .stations-grid {
     display: flex;
     gap: 30px;
@@ -315,7 +273,6 @@ body {
     text-align: center;
     background: linear-gradient(135deg, #1e2442 0%, #2c3255 100%);
     transition: 0.3s;
-    position: relative;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -347,38 +304,727 @@ body {
     display: inline-block;
 }
 
-.station-card .status-operational {
-    background-color: #4aff70;
-    color: #1a1f3a;
-    border: 1px solid #4aff70;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 15px 0 5px;
-    padding: 8px 20px;
+/* КНОПКИ ДЛЯ СТАНЦИЙ */
+.station-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-detail {
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #4a6fa5, #3a5a8a);
+    color: white;
+    text-decoration: none;
     border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
     display: inline-block;
 }
 
-.station-card .status-non-operational {
-    background-color: #ff6b6b;
+.btn-detail:hover {
+    background: linear-gradient(135deg, #ffd700, #ffc107);
+    color: #1a1f3a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-favorite {
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+    background: linear-gradient(135deg, #2a2f4a, #1e2442);
+    color: #ffd700;
+    border: 1px solid #ffd700;
+}
+
+.btn-favorite:hover {
+    background: linear-gradient(135deg, #ffd700, #ffc107);
+    color: #1a1f3a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-favorite.active {
+    background: linear-gradient(135deg, #ff6b6b, #ff4444);
     color: white;
     border: 1px solid #ff6b6b;
+}
+
+.btn-favorite.active:hover {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+}
+
+/* СТРАНИЦА СТАНЦИИ */
+.station-info {
+    background: linear-gradient(145deg, #1a1f3a 0%, #252b4a 100%);
+    border: 2px solid #4a6fa5;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.station-info p {
+    margin: 10px 0;
     font-size: 16px;
-    font-weight: bold;
-    margin: 15px 0 5px;
-    padding: 8px 20px;
-    border-radius: 25px;
+}
+
+.station-info strong {
+    color: #ffd700;
+    min-width: 150px;
     display: inline-block;
 }
 
-.station-card[data-type="research"] .type {
-    color: #4aff70;
+.status-operational {
+    background-color: #4aff70;
+    color: #1a1f3a;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
 }
 
-.station-card[data-type="mining"] .type {
+.status-non-operational {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.rating {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.rating-info {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating-stars { color: #ffd700; font-weight: bold; font-size: 16px; }
+.rating-count, .rating-none { color: #888; font-size: 12px; }
+.rating-none { font-style: italic; font-size: 14px; }
+
+/* КНОПКА НА СТРАНИЦЕ СТАНЦИИ */
+.favorite-section {
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #4a6fa5;
+}
+
+.btn-favorite-large {
+    display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    background: linear-gradient(135deg, #2a2f4a, #1e2442);
+    color: #ffd700;
+    border: 1px solid #ffd700;
+}
+
+.btn-favorite-large:hover {
+    background: linear-gradient(135deg, #ffd700, #ffc107);
+    color: #1a1f3a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-favorite-large.active {
+    background: linear-gradient(135deg, #ff6b6b, #ff4444);
+    color: white;
+    border: 1px solid #ff6b6b;
+}
+
+.btn-favorite-large.active:hover {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+}
+
+/* ОТЗЫВЫ */
+.add-review-form {
+    background: linear-gradient(145deg, #1a1f3a 0%, #252b4a 100%);
+    border: 2px solid #4a6fa5;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0 30px 0;
+}
+
+.add-review-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-review-form select,
+.add-review-form textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #0a0f2a;
+    border: 1px solid #4a6fa5;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-review-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.add-review-form button {
+    background-color: #4a6fa5;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    align-self: flex-start;
+}
+
+.add-review-form button:hover {
+    background-color: #ffd700;
+    color: #1a1f3a;
+    transform: scale(1.05);
+}
+
+.reviews-list {
+    margin: 20px 0;
+}
+
+.review-item {
+    background-color: rgba(26, 31, 58, 0.7);
+    border: 1px solid #4a6fa5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.review-item:hover {
+    border-color: #ffd700;
+    transform: translateX(5px);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4a6fa5;
+}
+
+.review-author { color: #ffd700; font-weight: bold; font-size: 16px; }
+.review-rating { color: #ffd700; letter-spacing: 2px; }
+.review-date { color: #888; font-size: 12px; }
+.review-text { font-size: 16px; line-height: 1.5; color: #ddd; }
+.review-actions { display: flex; gap: 10px; }
+.btn-edit { color: #ffd700; text-decoration: none; font-size: 16px; }
+.btn-delete { color: #ff6b6b; text-decoration: none; font-size: 16px; }
+.btn-edit:hover, .btn-delete:hover { transform: scale(1.1); display: inline-block; }
+.no-reviews { text-align: center; padding: 30px; color: #888; font-style: italic; }
+
+/* ОБЩИЕ ЭЛЕМЕНТЫ */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #1a1f3a;
+    border: 1px solid #4a6fa5;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background-color: #4a6fa5;
+    color: white;
+    transform: translateX(-5px);
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0a0f2a;
+    border: 1px solid #4a6fa5;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 5px #ffd700;
+}
+
+/* Кнопка переключения темы */
+.theme-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(26, 31, 58, 0.8);
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.theme-btn:hover {
+    background-color: #ffd700;
+    color: #1a1f3a;
+}
+
+/* КНОПКА "ПОДРОБНЕЕ" */
+.details-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    border-radius: 6px; /* Небольшые скругления углов, а не кружок */
+    text-decoration: none; /* Убираем подчеркивание ссылки */
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.details-link:hover {
+    background-color: #ffd700;
+    color: #1a1f3a; /* Темный текст на золотом фоне */
+    transform: translateY(-2px); /* Легкое поднятие кнопки вверх */
+}
+
+.remove-favorite {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #ff6b6b; /* Красный текст */
+    border: 1px solid #ff6b6b; /* Красная рамка */
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.remove-favorite:hover {
+    background-color: #ff6b6b;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ========================================= */
+/* === СВЕТЛАЯ ТЕМА (Light Theme Overrides) === */
+/* ========================================= */
+
+body.light {
+    background-image: none;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Шапка и контейнер */
+body.light .site-header {
+    background-color: #ffffff;
+    border-bottom-color: #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+body.light-theme .container {
+    background-color: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Навигация */
+body.light .nav-link {
+    color: #444;
+}
+
+body.light .nav-link:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+/* Кнопка смены темы */
+body.light .theme-btn {
+    background: white;
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+body.light .theme-btn:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+/* Общие стили для карточек (Resources, Habitats, Missions, Stations, Crew) */
+body.light .resources-card,
+body.light .habitat-card,
+body.light .mission-card,
+body.light .crew-card,
+body.light .station-card {
+    background-color: white;
+    border-color: #e0e0e0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+    text-shadow: none;
+}
+
+/* Crew Card Specifics (Gradient removal) */
+body.light.crew-card {
+    background: white;
+}
+
+body.light .crew-card h3 {
+    color: #ff6b6b;
+    text-shadow: none;
+    border-bottom-color: #eee;
+}
+
+body.light .crew-card .role {
+    color: #666;
+}
+
+body.light .crew-card::before {
+    background: linear-gradient(90deg, #ff6b6b, #ff4444);
+}
+
+body.light .crew-card:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+}
+
+/* Station Card Specifics */
+body.light .station-card {
+    background: white;
+}
+
+body.light .station-card h3 {
+    color: #ff6b6b;
+    text-shadow: none;
+    border-bottom-color: #eee;
+}
+
+body.light .station-card .type {
+    color: #555;
+    background-color: #f0f0f0;
+}
+
+body.light .station-card:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 25px rgba(255, 107, 107, 0.2);
+}
+
+/* Resources & Habitats Specifics */
+body.light .resources-card:hover,
+body.light .habitat-card:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.2);
+}
+
+body.light .habitat-card:hover {
+    background-color: #fff;
+}
+
+/* Mission Card Specifics */
+body.light .mission-card h3 {
+    color: #ff6b6b;
+    text-shadow: none;
+}
+
+body.light .mission-card .type {
+    color: #666;
+}
+
+body.light .mission-card .station {
+    color: #444;
+}
+
+body.light .mission-card .date {
+    color: #999;
+    border-top-color: #eee;
+}
+
+body.light .mission-card:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.2);
+}
+
+/* Цены и стоки */
+body.light .stock,
+body.light .price,
+body.light .capacity {
+    color: #ff6b6b;
+    text-shadow: none;
+}
+
+/* Статусы миссий (адаптация под светлый фон) */
+body.light .mission-card .status-planned {
+    background-color: #e0e0e0;
+    color: #333;
+}
+body.light .mission-card .status-active {
+    background-color: #d4edda;
+    color: #155724;
+}
+body.light .mission-card .status-completed {
+    background-color: #fff3cd;
+    color: #856404;
+}
+body.light .mission-card .status-failed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Кнопки */
+body.light .btn-detail {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+}
+body.light .btn-detail:hover {
+    background: linear-gradient(135deg, #ff6b6b, #ff4444);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+body.light .btn-favorite {
+    background: white;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+body.light .btn-favorite:hover {
+    background: #ff6b6b;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+body.light .btn-favorite.active:hover {
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+}
+
+/* Страница станции */
+body.light .station-info {
+    background: white;
+    border-color: #e0e0e0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+body.light .station-info strong {
+    color: #ff6b6b;
+}
+
+body.light .rating {
+    color: #ff6b6b;
+}
+body.light .rating-stars {
+    color: #ff6b6b;
+}
+
+body.light .favorite-section {
+    border-top-color: #eee;
+}
+
+body.light .btn-favorite-large {
+    background: white;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+body.light .btn-favorite-large:hover {
+    background: #ff6b6b;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Отзывы */
+body.light .add-review-form {
+    background: white;
+    border-color: #e0e0e0;
+}
+
+body.light .add-review-form select,
+body.light .add-review-form textarea,
+body.light input[type="email"],
+body.light input[type="password"] {
+    background-color: #f9f9f9;
+    border-color: #ddd;
+    color: #333;
+}
+
+body.light .add-review-form button {
+    background-color: #6c757d;
+    color: white;
+}
+
+body.light .add-review-form button:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+body.light .review-item {
+    background-color: #f9f9f9;
+    border-color: #eee;
+}
+
+body.light .review-item:hover {
+    border-color: #ff6b6b;
+}
+
+body.light .review-header {
+    border-bottom-color: #eee;
+}
+
+body.light .review-author {
+    color: #ff6b6b;
+}
+
+body.light .review-rating {
+    color: #ff6b6b;
+}
+
+body.light .review-text {
+    color: #555;
+}
+
+/* Общие элементы */
+body.light .back-link {
+    background-color: white;
+    border-color: #ddd;
+    color: #ff6b6b;
+}
+
+body.light .back-link:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+/* КНОПКА "ПОДРОБНЕЕ" */
+body.light .details-link {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+body.light .details-link:hover {
+    background-color: #ff6b6b;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* Большая кнопка избранного */
+.favorite-section {
+    margin-top: 20px;
+}
+
+.btn-favorite-large {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    /* По умолчанию (не в избранном) - нейтральный стиль */
+    background-color: #252b48;
+    color: #e0e0e0;
+    border: 2px solid #555;
+}
+
+/* При наведении на "Добавить" */
+.btn-favorite-large:hover {
+    background-color: #333a5c;
+    border-color: #ffd700;
     color: #ffd700;
 }
 
-.station-card[data-type="communications"] .type {
-    color: #4a6fa5;
+/* Активная кнопка (В избранном) */
+.btn-favorite-large.active {
+    background-color: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+/* При наведении на "Удалить" */
+.btn-favorite-large.active:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+/* Для светлой темы */
+body.light .btn-favorite-large {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #ccc;
+}
+
+body.light .btn-favorite-large:hover {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+body.light .btn-favorite-large.active {
+    background-color: #fff0f0;
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+body.light .remove-favorite {
+    color: #d32f2f;
+    border-color: #d32f2f;
+}
+
+body.light .remove-favorite:hover {
+    background-color: #ff6b6b;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.empty-favorites {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 20px;
+}
+
+.empty-favorites p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #888;
+}
+
+body.light .empty-favorites p {
+    color: #666;
 }

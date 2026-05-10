@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #4a6fa5; border-radius: 10px; background-color: #1a1f3a;">
+    <h2 style="color: #ffd700;">Регистрация на Марсе 🌟</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background: #4a6fa5; color: white; width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
+            Создать аккаунт
+        </button>
+    </form>
+
+    <p style="margin-top: 15px; color: #ddd;">
+        Уже есть профиль? <a href="{% url 'crew:login' %}" style="color: #ffd700;">Войти</a>
+    </p>
+</div>
+{% endblock %}

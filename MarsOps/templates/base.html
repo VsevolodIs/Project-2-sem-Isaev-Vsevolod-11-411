@@ -5,7 +5,7 @@
     <title>MarsOps | Система управления колонией</title>
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
 </head>
-<body>
+<body class="{{ request.COOKIES.theme }}">
     <header class="site-header">
         <h1> Марсиане </h1>
         <nav>
@@ -14,6 +14,33 @@
             <a href="{% url 'crew:crew_members' %}" class="nav-link">Экипаж</a>
             <a href="{% url 'missions:mission_list' %}" class="nav-link">Миссии</a>
             <a href="{% url 'stations:station_list' %}" class="nav-link">Станции</a>
+
+            <a href="{% url 'stations:favorites' %}" class="nav-link favorites-link">
+                    ❤️ Избранное
+                    {% if request.session.favorites_count %}
+                        <span class="favorites-badge">{{ request.session.favorites_count }}</span>
+                    {% endif %}
+                </a>
+
+            <form action="{% url 'stations:toggle_theme' %}" method="get" style="display: inline;">
+                <button type="submit" class="theme-btn" title="Сменить тему">
+                    сменить тему
+                </button>
+            </form>
+
+             {% if request.user.is_authenticated %}
+                <span style="margin-left: 20px;">Привет, <strong>{{ request.user.username }}</strong>! 👨‍🚀</span>
+                <a href="{% url 'crew:profile' %}" class="nav-link">Личный кабинет</a>
+                <form action="{% url 'crew:logout' %}" method="post" style="display: inline; margin-left: 10px;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: 1px solid #ff6b6b; color: #ff6b6b; padding: 5px 10px; cursor: pointer; border-radius: 5px;">
+                        Выйти
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'crew:login' %}" class="nav-link" style="margin-left: 20px;">Войти</a>
+                <a href="{% url 'crew:register' %}" class="nav-link">Регистрация</a>
+            {% endif %}
         </nav>
     </header>
 

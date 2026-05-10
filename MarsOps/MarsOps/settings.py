@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,9 +32,39 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 # Application definition
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
 INSTALLED_APPS = [
+    'django.contrib.sites',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+
+    # сюда будем добавлять провайдеров, например:
+    'allauth.socialaccount.providers.github',
+    # позже можно будет включить ещё:
+    # 'allauth.socialaccount.providers.vk',
+    # 'allauth.socialaccount.providers.yandex',
+
+
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    'rest_framework',
     'crew.apps.CrewConfig',
     'missions.apps.MissionsConfig',
     'stations.apps.StationsConfig',
@@ -52,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'MarsOps.urls'
@@ -63,6 +98,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -131,3 +167,58 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static_dev',
 ]
+
+LOGIN_REDIRECT_URL = '/crew/profile'
+LOGIN_URL = '/crew/login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.mail.ru')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 465))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'True') == 'True'
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
+# Настройки сессий
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+# Настройки куки
+CSRF_COOKIE_AGE = 60 * 60 * 24 * 7
+LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 7
+
+
+INSTALLED_APPS += [
+    'drf_spectacular',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # для классического веба (сессии, куки)
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # для JWT-токенов
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+AUTHENTICATION_BACKENDS = [
+    # стандартный backend Django, чтобы продолжали работать админка и обычный логин
+    'django.contrib.auth.backends.ModelBackend',
+    # backend allauth, который умеет логинить через соцсети и email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'MarsOps API',
+    'DESCRIPTION': 'API для управления колонией на Марсе',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+SITE_ID = 1
+SOCIALACCOUNT_LOGIN_ON_GET = True

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #4a6fa5; border-radius: 10px; background-color: #1a1f3a;">
+    <h2 style="color: #ffd700;">Личный кабинет 👨‍🚀</h2>
+
+    <p><strong style="color: #ffd700;">Логин:</strong> {{ request.user.username }}</p>
+    <p><strong style="color: #ffd700;">Email:</strong> {{ request.user.email|default:"Не указан" }}</p>
+    <p><strong style="color: #ffd700;">Telegram:</strong> {{ profile.telegram|default:"Не указан" }}</p>
+
+    {% if profile.bio %}
+        <p><strong style="color: #ffd700;">О себе:</strong> {{ profile.bio }}</p>
+    {% endif %}
+
+    <hr style="border-color: #4a6fa5; margin: 20px 0;">
+
+    <h3 style="color: #ffd700;">Редактировать данные:</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background: #4a6fa5; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            Сохранить изменения
+        </button>
+    </form>
+
+    <hr style="border-color: #4a6fa5; margin: 20px 0;">
+
+    <h3 style="color: #ffd700;">Ваши отзывы о станциях:</h3>
+    <ul style="color: #ddd;">
+        {% for review in reviews %}
+            <li><strong style="color: #ffd700;">{{ review.station.name }}</strong>: {{ review.rating }} ⭐ - {{ review.text|truncatechars:50 }}</li>
+        {% empty %}
+            <li>Вы еще не оставляли отзывов.</li>
+        {% endfor %}
+    </ul>
+
+    <hr style="border-color: #4a6fa5; margin: 20px 0;">
+
+    <div style="margin-top: 15px;">
+        <form action="{% url 'crew:logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="background: #ff6b6b; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer;">
+                Выйти из аккаунта
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

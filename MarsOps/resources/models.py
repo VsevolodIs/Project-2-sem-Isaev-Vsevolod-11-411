@@ -19,6 +19,12 @@ class Resources(models.Model):
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField('Остаток на складе', default=0)
     is_available = models.BooleanField('В продаже', default=True)
+    image_path = models.CharField(
+        'Путь к картинке',
+        max_length=255,
+        blank=True,
+        help_text='Например: "img/products/pink_bag.jpg"',
+    )
 
     class Meta:
         verbose_name = 'Ресурс'

@@ -1,20 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Станции</h2>
+<h2>🚀 Станции</h2>
+
 <div class="stations-grid">
     {% for station in stations %}
     <div class="station-card">
         <h3>{{ station.name }}</h3>
-        <p class="type">{{ station.station_type }}</p>
+        <p class="type">{{ station.get_station_type_display }}</p>
+        <div class="rating-info">
+            {% with avg=station.average_rating %}
+                {% if avg %}
+                    <span class="rating-stars">⭐ {{ avg|floatformat:1 }}</span>
+                    <span class="rating-count">({{ station.reviews.count }})</span>
+                {% else %}
+                    <span class="rating-none">⭐ Нет оценок</span>
+                {% endif %}
+            {% endwith %}
+        </div>
         <p class="status">
             {% if station.operational %}
-            Работает
+            <span class="status-operational">✅ Работает</span>
             {% else %}
-            Не работает
+            <span class="status-non-operational">❌ Не работает</span>
             {% endif %}
         </p>
+        <div class="station-actions">
+            <a href="{% url 'stations:station_detail' station.id %}" class="details-link">📋 Подробнее</a>
+
+            {% if user.is_authenticated %}
+                {% if station.id in favorites %}
+                    <a href="{% url 'stations:toggle_favorite' station.id %}" class="btn-favorite active">❤️ В избранном</a>
+                {% else %}
+                    <a href="{% url 'stations:toggle_favorite' station.id %}" class="btn-favorite">🤍 В избранное</a>
+                {% endif %}
+            {% endif %}
+        </div>
     </div>
+    {% empty %}
+    <p>Нет доступных станций</p>
     {% endfor %}
 </div>
 {% endblock %}

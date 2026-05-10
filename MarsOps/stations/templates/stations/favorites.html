@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>❤️ Избранные станции</h2>
+
+{% if favorites %}
+    <div class="stations-grid">
+        {% for station in favorites %}
+        <div class="station-card">
+            <h3>{{ station.name }}</h3>
+            <p class="type">{{ station.station_type }}</p>
+            <p class="status">
+                {% if station.operational %}
+                <span class="status-operational">Работает</span>
+                {% else %}
+                <span class="status-non-operational">Не работает</span>
+                {% endif %}
+            </p>
+            <div class="station-actions">
+                <a href="{% url 'stations:station_detail' station.id %}" class="details-link">Подробнее</a>
+                <a href="{% url 'stations:toggle_favorite' station.id %}" class="remove-favorite">❤️ Удалить</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="empty-favorites">
+        <p>😔 У вас пока нет избранных станций</p>
+        <a href="{% url 'stations:station_list' %}" class="back-link">Перейти к списку станций</a>
+    </div>
+{% endif %}
+
+<a href="{% url 'stations:station_list' %}" class="back-link">← Назад к станциям</a>
+{% endblock %}
