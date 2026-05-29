@@ -14,4 +14,5 @@ class Habitat(models.Model):
         verbose_name_plural = 'Модули'
 
     def __str__(self):
-        return f"{self.name} ({self.station.name})"
+        station_name = self.station.name if self.station else "Не назначена"
+        return f"{self.name} ({station_name})"

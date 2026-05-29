@@ -1,5 +1,7 @@
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
+from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from stations.models import Station, StationReview
 from stations.serializers import StationSerializer, StationReviewSerializer
 
@@ -42,3 +44,23 @@ class StationCreateAPIView(generics.CreateAPIView):
     queryset = Station.objects.all()
     serializer_class = StationSerializer
     permission_classes = [IsAdminUser]
+
+@extend_schema(
+    summary="Создать отзыв",
+    description="Создает новый отзыв к машине (POST)",
+    tags=['Отзывы']
+)
+class StationReviewCreateAPIView(generics.CreateAPIView):
+    queryset = StationReview.objects.all()
+    serializer_class = StationReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+@extend_schema(
+    summary="Удалить отзыв",
+    description="Удаляет отзыв по ID (DELETE)",
+    tags=['Отзывы']
+)
+class StationReviewDestroyAPIView(generics.DestroyAPIView):
+    queryset = StationReview.objects.all()
+    serializer_class = StationReviewSerializer
+    permission_classes = [IsAuthenticated]

@@ -1,5 +1,6 @@
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
+from rest_framework.permissions import IsAdminUser
 from missions.models import Mission
 from missions.serializers import MissionSerializer
 
@@ -22,3 +23,13 @@ class MissionListAPIView(generics.ListAPIView):
 class MissionDetailAPIView(generics.RetrieveAPIView):
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
+
+@extend_schema(
+    summary="Создать миссию (Только для админов)",
+    description="Создает новую миссию в каталоге",
+    tags=['Миссии']
+)
+class MissionCreateAPIView(generics.CreateAPIView):
+    queryset = Mission.objects.all()
+    serializer_class = MissionSerializer
+    permission_classes = [IsAdminUser]

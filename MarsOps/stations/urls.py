@@ -1,7 +1,7 @@
 from django.urls import path, include
 from .views import station_list, station_detail, add_station_review, edit_station_review, delete_station_review, \
     toggle_favorite, favorites_list, toggle_theme
-from . import api_views
+from . import api_views, views
 
 app_name = 'stations'
 
@@ -17,4 +17,8 @@ urlpatterns = [
     path('api/stations', api_views.StationListAPIView.as_view(), name='api_stations'),
     path('api/stations/<int:pk>', api_views.StationDetailAPIView.as_view(), name='api_station_detail'),
     path('api/station-reviews', api_views.StationReviewListAPIView.as_view(), name='api_station_reviews'),
+    path('api/station/create/', api_views.StationCreateAPIView.as_view(), name='api_station_create'),
+    path('api/station-reviews/create/', api_views.StationReviewCreateAPIView.as_view(), name='api_review_create'),
+    path('api/station-reviews/<int:pk>/delete/', api_views.StationReviewDestroyAPIView.as_view(), name='api_review_destroy'),
+    path('chat/<str:room_name>/', views.chat_room, name='chat_room'),
 ]

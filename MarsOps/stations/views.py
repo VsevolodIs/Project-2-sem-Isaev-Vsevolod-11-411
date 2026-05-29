@@ -147,3 +147,9 @@ def toggle_favorite(request, station_id):
     request.session.modified = True
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+@login_required
+def chat_room(request, room_name):
+    return render(request, 'stations/chat.html', {
+        'room_name': room_name
+    })

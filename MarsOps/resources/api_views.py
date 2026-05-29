@@ -40,7 +40,7 @@ class ResourceDetailAPIView(generics.RetrieveAPIView):
     description="Создает новый ресурс в каталоге",
     tags=['Ресурсы']
 )
-class ResourcesCreateAPIView(generics.CreateAPIView):
+class ResourceCreateAPIView(generics.CreateAPIView):
     queryset = Resources.objects.all()
     serializer_class = ResourceSerializer
     permission_classes = [IsAdminUser]

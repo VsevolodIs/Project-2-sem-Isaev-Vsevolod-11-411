@@ -7,6 +7,6 @@ urlpatterns = [
     path('resources/', views.resources_list, name='resources_list'),
     path('api/categories/', api_views.CategoryListAPIView.as_view(), name='api_categories'),
     path('api/resources/', api_views.ResourceListAPIView.as_view(), name='api_resources'),
-    path('api/resources/<int:pk>', api_views.ResourceDetailAPIView.as_view(), name='api_resources_detail'),
-    path('api/cars/create/', api_views.ResourcesCreateAPIView.as_view(), name='api_resources_create'),
+    path('api/resources/<int:pk>', api_views.ResourceDetailAPIView.as_view(), name='api_resource_detail'),
+    path('api/resoutces/create/', api_views.ResourceCreateAPIView.as_view(), name='api_resource_create'),
 ]
