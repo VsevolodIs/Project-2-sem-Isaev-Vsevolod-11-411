@@ -1,1 +1,0 @@
-# Project-2-sem-Isaev-Vsevolod-11-411
