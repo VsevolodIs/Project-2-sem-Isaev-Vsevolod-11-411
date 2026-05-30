@@ -11,6 +11,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./MarsOps
 
 
     # Поднимаем такие же сервисы, как в docker-compose!
